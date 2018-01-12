@@ -1,6 +1,6 @@
 # Scraping
 
-Take a Airbnb # or VRBO and get some bed information
+Take a Airbnb # or VRBO and get some bed information.  May want to limit requests/second
 
     $ node scraper.js 11240707
     11240707
