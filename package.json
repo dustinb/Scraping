@@ -1,12 +1,11 @@
 {
-  "name": "craig-grid",
+  "name": "scraping",
   "version": "1.0.0",
-  "description": "Not sure yet",
+  "description": "Pull some web pages and retrieve data from them",
   "main": "index.js",
   "dependencies": {
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
-    "pg": "^6.2.2",
     "request": "^2.81.0"
   },
   "devDependencies": {},
