@@ -80,3 +80,30 @@ Take a Airbnb # or VRBO and get some bed information.  May want to limit request
     1 queen bed
     Common spaces
     1 sofa bed
+
+## Hive Data Injection
+
+This is example of how the Craig's List scraper sent information into a Hive plugin
+
+```php
+<?php
+  namespace FiveTechnology\Plugins;
+  class Post extends \FiveTechnology\Core\pb_item {
+
+  function inject() {
+    $this->load("pb_pid=" . $_POST['pid']);  
+    $this->pid = $_POST['pid'];
+    $this->title = $_POST['title'];
+    $this->category = $_POST['category'];
+    $this->price = $_POST['price'];
+    $this->location = $_POST['location'];
+    $this->url = $_POST['url'];
+    $this->save();
+    if ($_POST['image'] && ! $this->image->exists($_POST['image'])) {
+      $this->image->addFile($_POST['image']);
+    }
+    $this->save();
+  }
+}
+```      
+      
