@@ -3,8 +3,9 @@
 ## Install
 
 1. `git clone git@github.com:FiveTechnology/Scraping.git`
-2. `npm install`
-3. See examples for either `cl.js` or `airbnb.js`
+2. `cd Scraping`
+3. `npm install`
+4. See examples for either `cl.js` or `airbnb.js`
 
 ## Craig's List
 
