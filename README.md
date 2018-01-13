@@ -10,7 +10,7 @@
 
 Pass in the location and right code
 
-    dustin@jessie:~/Scraping$ node cl rockies sss
+    $ node cl rockies sss
     0 = /usr/bin/node
     1 = /home/dustin/Scraping/cl
     2 = rockies
