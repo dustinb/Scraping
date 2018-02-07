@@ -24,15 +24,22 @@ process.argv.forEach(function (val, index, array) {
   if (index == 4) {
     page = val;
   }
-
 });
 
-var scrapeURL = 'https://' + location + '.craigslist.org/search/' + category;
+var scrapeURL = 'https://' + location + '.craigslist.org/search/' + category + '?';
 
-scrapeURL += '?min_price=1000&max_price=11000';
-if (page > 1) {
-  scrapeURL += '&s=' + ((page - 1) * 120);
+var query = [];
+// scrapeURL += '?min_price=1000&max_price=11000';
+
+if (process.argv[5]) {
+  query.push('query=' + process.argv[5]);
 }
+
+if (page > 1) {
+  query.push('s=' + ((page - 1) * 120));
+}
+
+scrapeURL = scrapeURL + query.join('&');
 
 console.log("About to pull " + scrapeURL);
 spider.getURL(scrapeURL, pullPost, {location: location, code: category});

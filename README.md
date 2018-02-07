@@ -8,10 +8,25 @@
 4. See examples for either `cl.js` or `airbnb.js`
 
 ## Craig's List
+Show a list of locations by state
+
+    $ node clsites.js Minnesota
+    About to pull https://www.craigslist.org/about/sites
+    getURL: https://www.craigslist.org/about/sites
+    Using cached version of https://www.craigslist.org/about/sites
+
+             bemidji https://bemidji.craigslist.org/
+            brainerd https://brainerd.craigslist.org/
+              duluth https://duluth.craigslist.org/
+             mankato https://mankato.craigslist.org/
+         minneapolis https://minneapolis.craigslist.org/
+                 rmn https://rmn.craigslist.org/
+            marshall https://marshall.craigslist.org/
+             stcloud https://stcloud.craigslist.org/
 
 Pass in the location and right code
 
-    $ node cl rockies sss
+    $ node cl.js rockies sss
     0 = /usr/bin/node
     1 = /home/dustin/Scraping/cl
     2 = rockies
@@ -46,27 +61,15 @@ Pass in the location and right code
       category: 'sss',
       image: 'https://images.craigslist.org/00H0H_adX5kSaWYdj_300x300.jpg',
       url: 'https://rockies.craigslist.org/snw/d/2014-ski-doo-summit-800-low/6457869740.html' }
-    { pid: 6450626560,
-      title: '2016 Load Trail 24x8.5 Tilt Deckover trailer new',
-      price: '$10500',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00t0t_cRxjEmzL0v7_300x300.jpg',
-      url: 'https://rockies.craigslist.org/tro/d/2016-load-trail-24x85-tilt/6450626560.html' }
-    { pid: 6442617437,
-      title: '2004 Volvo XC70',
-      price: '$2600',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00n0n_8HruTdwpTUi_300x300.jpg',
-      url: 'https://rockies.craigslist.org/cto/d/2004-volvo-xc70/6442617437.html' }
-    { pid: 6457790030,
-      title: 'Honda Accord 1997',
-      price: '$1750',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00U0U_8xAd7mknJcN_300x300.jpg',
-      url: 'https://rockies.craigslist.org/cto/d/honda-accord-1997/6457790030.html' }
+
+### Some Codes
+
+| Code | Description         |
+|------|---------------------|
+| mcy  | Motorcycle Owner    |
+| mca  | Motorcycle All      |
+| mcd  | Motorcycle Dealer   |
+| cto  | Cars/Trucks Owner   |
 
 ## Airbnb
 
