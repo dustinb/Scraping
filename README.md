@@ -62,6 +62,26 @@ Pass in the location and right code
       image: 'https://images.craigslist.org/00H0H_adX5kSaWYdj_300x300.jpg',
       url: 'https://rockies.craigslist.org/snw/d/2014-ski-doo-summit-800-low/6457869740.html' }
 
+Using a search query 
+
+    $ node cl.js minneapolis mcy 1 xs850
+    0 = /usr/local/Cellar/node/7.3.0/bin/node
+    1 = /Users/dustin/Projects/Scraping/cl.js
+    2 = minneapolis
+    3 = mcy
+    4 = 1
+    5 = xs850
+    About to pull https://minneapolis.craigslist.org/search/mcy?query=xs850
+    getURL: https://minneapolis.craigslist.org/search/mcy?query=xs850
+    Saving https://minneapolis.craigslist.org/search/mcy?query=xs850 to 96a282831ee66e4c22a5cc0919c7c123
+    { pid: 6460413329,
+      title: '1980 Yamaha xs850',
+      price: '$300',
+      location: 'minneapolis',
+      category: 'mcy',
+      image: 'https://images.craigslist.org/01717_jIN9a6eP9Tv_300x300.jpg',
+      url: 'https://minneapolis.craigslist.org/ank/mcy/d/1980-yamaha-xs850/6460413329.html' }
+    
 ### Some Codes
 
 | Code | Description         |
