@@ -1,23 +1,37 @@
 
-  var cheerio = require('cheerio');
-  var spider = require('./spider');
-  var sprintf = require('sprintf-js').sprintf;
-  var scrapeURL = 'https://www.craigslist.org/about/sites';
+  const craigslist = require('./craigslist.js');
+  const commandLineArgs = require('command-line-args')
 
-  console.log("About to pull " + scrapeURL);
-  spider.getURL(
-    scrapeURL, 
-    function(html, data) {
-      console.log('');
-      var $ = cheerio.load(html); 
-      $('h4').each(function() {
-        if ($(this).html() == process.argv[2]) {
-          $(this).next().find('li a').each(function () {
-            var location = $(this).attr('href').match(/https:..([a-z0-9]*)/);
-            console.log(sprintf('%20s %s', location[1], $(this).attr('href')));
-          });
-        }
-      });
-    } 
-  );
+  const optionDefinitions = [
+    {
+      name: 'state',
+      alias: 's',
+      type: String,
+      description: 'State or area -s Minnesota'
+    },
+    {
+      name: 'quiet',
+      alias: 'q',
+      type: Boolean,
+      description: 'Only output the location names'
+    }
+  ];
+
+  const options = commandLineArgs(optionDefinitions);
+
+  if (options.state) {
+    craigslist.getLocationsByState(options.state, function(locations) {
+      if (options.quiet) {
+        locations.forEach(function(value) {
+          console.log(value.location);
+        });
+      } else {
+        console.log(locations);
+      }
+    });
+  } else {
+    craigslist.getSites(function (locations) {
+      console.log(locations);
+    });
+  }
 

@@ -17,7 +17,7 @@ module.exports = {
   jar: jar,
 
   getURL: function(url, done, data) {
-    console.log('getURL: ' + url);
+    
     if (typeof data == 'undefined') {
       var data = {};
     }
@@ -26,7 +26,6 @@ module.exports = {
     
     // Use cached version if exists
     if (fs.existsSync(data.md5 + '.html')) {
-      console.log('Using cached version of ' + url);
       fs.readFile(data.md5 + '.html', function(err, html) {
 	done(html, data);
       });
@@ -44,7 +43,6 @@ module.exports = {
         return;
       }
 
-      console.log('Saving ' + url + ' to ' + data.md5);
       fs.writeFileSync(data.md5 + '.html', html);
 
       done(html, data);

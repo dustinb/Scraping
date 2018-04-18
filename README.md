@@ -5,83 +5,71 @@
 1. `git clone git@github.com:FiveTechnology/Scraping.git`
 2. `cd Scraping`
 3. `npm install`
-4. See examples for either `cl.js` or `airbnb.js`
 
 ## Craig's List
-Show a list of locations by state
 
-    $ node clsites.js Minnesota
-    About to pull https://www.craigslist.org/about/sites
-    getURL: https://www.craigslist.org/about/sites
-    Using cached version of https://www.craigslist.org/about/sites
+Category codes
 
-             bemidji https://bemidji.craigslist.org/
-            brainerd https://brainerd.craigslist.org/
-              duluth https://duluth.craigslist.org/
-             mankato https://mankato.craigslist.org/
-         minneapolis https://minneapolis.craigslist.org/
-                 rmn https://rmn.craigslist.org/
-            marshall https://marshall.craigslist.org/
-             stcloud https://stcloud.craigslist.org/
-
-Pass in the location and right code
-
-    $ node cl.js rockies sss
-    0 = /usr/bin/node
-    1 = /home/dustin/Scraping/cl
-    2 = rockies
-    3 = sss
-    About to pull https://rockies.craigslist.org/search/sss?min_price=1000&max_price=11000
-    getURL: https://rockies.craigslist.org/search/sss?min_price=1000&max_price=11000
-    { pid: 6457896129,
-      title: '98 Subaru Outback 151k 2.5 automatic',
-      price: '$1000',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00p0p_e8NG720vfXe_300x300.jpg',
-      url: 'https://rockies.craigslist.org/cto/d/98-subaru-outback-151k-25/6457896129.html' }
-    { pid: 6426346614,
-      title: '2016 HaiBike Xduro All Mtn RX electric',
-      price: '$2700',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00f0f_52a7cvE7VDD_300x300.jpg',
-      url: 'https://rockies.craigslist.org/bik/d/2016-haibike-xduro-all-mtn-rx/6426346614.html' }
-    { pid: 6451946080,
-      title: '1993 Toyota Landcruiser',
-      price: '$8500',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00l0l_6daqVfmvKit_300x300.jpg',
-      url: 'https://rockies.craigslist.org/cto/d/1993-toyota-landcruiser/6451946080.html' }
-    { pid: 6457869740,
-      title: '2014 ski-doo summit x 800 - low miles',
-      price: '$7000',
-      location: 'rockies',
-      category: 'sss',
-      image: 'https://images.craigslist.org/00H0H_adX5kSaWYdj_300x300.jpg',
-      url: 'https://rockies.craigslist.org/snw/d/2014-ski-doo-summit-800-low/6457869740.html' }
-
-Using a search query 
-
-    $ node cl.js minneapolis mcy 1 xs850
-    0 = /usr/local/Cellar/node/7.3.0/bin/node
-    1 = /Users/dustin/Projects/Scraping/cl.js
-    2 = minneapolis
-    3 = mcy
-    4 = 1
-    5 = xs850
-    About to pull https://minneapolis.craigslist.org/search/mcy?query=xs850
-    getURL: https://minneapolis.craigslist.org/search/mcy?query=xs850
-    Saving https://minneapolis.craigslist.org/search/mcy?query=xs850 to 96a282831ee66e4c22a5cc0919c7c123
-    { pid: 6460413329,
-      title: '1980 Yamaha xs850',
-      price: '$300',
-      location: 'minneapolis',
-      category: 'mcy',
-      image: 'https://images.craigslist.org/01717_jIN9a6eP9Tv_300x300.jpg',
-      url: 'https://minneapolis.craigslist.org/ank/mcy/d/1980-yamaha-xs850/6460413329.html' }
+    $ node clcats
     
+Listing locations
+
+    # Show all locations
+    $ node clsites
+    
+    # By State
+    $ node clsites -s Minnesota
+    
+    # Quiet only shows location
+    $ node clsites -s Colorado -q
+    
+Doing search
+
+    # -l Location -c Code -m Max Price -q Query
+    $ node cl -l westslope -c mcy -m 500 -q yamaha
+    [ { pid: 6563273862,
+       title: '2001 Yamaha YZF-R6',
+       price: '$400',
+       location: undefined,
+       category: undefined,
+       image: 'https://images.craigslist.org/00Y0Y_8S6gzzhoqeG_300x300.jpg',
+       url: 'https://westslope.craigslist.org/mcy/d/2001-yamaha-yzf-r6/6563273862.html' },
+     { pid: 6544605701,
+       title: '**2006 Midnight Warrior**',
+       price: '$435',
+       location: undefined,
+       category: undefined,
+       image: '',
+       url: 'https://westslope.craigslist.org/mcy/d/2006-midnight-warrior/6544605701.html' },
+     { pid: 6558477925,
+       title: '1971 Yamaha RT-1 360 Dirt Bike',
+       price: '$250',
+       location: undefined,
+       category: undefined,
+       image: 'https://images.craigslist.org/00c0c_g0uaQBjLzch_300x300.jpg',
+       url: 'https://westslope.craigslist.org/mcy/d/1971-yamaha-rtdirt-bike/6558477925.html' },
+     { pid: 6554158693,
+       title: 'Mobile motorcycle inspection for the novice buyer',
+       price: '$1',
+       location: undefined,
+       category: undefined,
+       image: '',
+       url: 'https://rockies.craigslist.org/mcy/d/mobile-motorcycle-inspection/6554158693.html' },
+     ...
+       
+Slack Bot
+
+Slack command will be the following.  /craig will be whatever is setup in Slack pointed this server
+
+    /craig sites [State]
+    /craig cats
+    /craig location|state code query
+    /craig location|state code query min max
+    /craig location|state code query max
+     
+    # Port to run
+    $ node clbot -p 8080   
+        
 ### Some Codes
 
 | Code | Description         |
