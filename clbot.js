@@ -45,11 +45,16 @@
       var slackResponse = {
         response_type: "in_channel",
         text: "Found " + posts.length + " for " + "yamaha less than $500",
-        attachments: []
+        attachments: [],
+        "unfurl_media":true
       };
-
+ 
+      var i = 0
       for(let post of posts) {
-        slackResponse.attachments.push(post.url);
+        slackResponse.attachments.push({image_url: post.image, text: "<" + post.url + "|" + post.title + "> " + post.price});
+        if (i++ > 6) {
+         break;
+        }
       }
 
       response.write(JSON.stringify(slackResponse, null, 3));
