@@ -1,6 +1,6 @@
 
 var request = require('request');
-var jar = request.jar();
+//var jar = request.jar();
 var fs = require('fs');
 var md5 = require('md5');
 
@@ -14,7 +14,7 @@ jar.setCookie(cookie, 'http://www.yamaha-triples.org');
 
 module.exports = {
 
-  jar: jar,
+  //jar: jar,
 
   getURL: function(url, done, data) {
     
@@ -32,7 +32,7 @@ module.exports = {
       return;
     }
 
-    request({url: url, jar: jar, followRedirect: false}, function (error, response, html) {
+    request({url: url, followRedirect: false}, function (error, response, html) {
       if (error) {
         console.log(error);
         return;
@@ -43,7 +43,7 @@ module.exports = {
         return;
       }
 
-      fs.writeFileSync(data.md5 + '.html', html);
+      fs.writeFile(data.md5 + '.html', html, function() {});
 
       done(html, data);
     });
