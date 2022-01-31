@@ -12,11 +12,17 @@ var cookie = request.cookie('bbsmid=5042');
 jar.setCookie(cookie, 'http://www.yamaha-triples.org');
 */
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
 module.exports = {
 
   //jar: jar,
 
-  getURL: function(url, done, data) {
+  getURL: async function(url, done, data) {
     
     if (typeof data == 'undefined') {
       var data = {};
@@ -31,6 +37,8 @@ module.exports = {
       });
       return;
     }
+
+    await sleep(3000);
 
     request({url: url, followRedirect: false}, function (error, response, html) {
       if (error) {

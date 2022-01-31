@@ -10,6 +10,12 @@
       description: 'Location'
     },
     {
+      name: 'state',
+      alias: 's',
+      type: String,
+      description: 'Search whole state'
+    },
+    {
       name: 'category',
       alias: 'c',
       type: String,
@@ -31,8 +37,18 @@
 
   const options = commandLineArgs(optionDefinitions);
 
-  craigslist.search(options.location, options.category, options.query, options.max, function(posts) {
-    console.log(posts);
-  });
+  if (options.state) {
+    craigslist.getLocationsByState(options.state, function(results) {
+      results.forEach(function(value) {
+        craigslist.search(value.location, options.category, options.query, options.max, function(posts) {
+          console.log(posts);
+        });
+      });
+    });
+  } else {
+    craigslist.search(options.location, options.category, options.query, options.max, function(posts) {
+      console.log(posts);
+    });
+  }
 
 
