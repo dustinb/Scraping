@@ -4,6 +4,20 @@ var cheerio = require('cheerio');
 
 module.exports = {
 
+  getCategories: function(done) {
+    spider.getURL('https://cosprings.craigslist.org/', function(html, data) {
+      var $ = cheerio.load(html);
+      let categories = [];
+      $('#sss li').each(function() {
+        var code = $(this).find('a').data('cat');
+        $(this).find('sup').remove();
+        var text = $(this).find('span.txt').html();
+        categories.push({name: text, code: code});
+      });
+      done(categories);
+    });
+  },
+
   // Return all locations within a state
   getLocationsByState: function(state, done) {
     this.getSites(function(locations) {
@@ -49,7 +63,6 @@ module.exports = {
       scrapeURL = scrapeURL + '?' + query.join('&');
     }
 
-    console.log(scrapeURL);
     spider.getURL(scrapeURL, function pullPost(html, data) {
       var records = [];
       var $ = cheerio.load(html);
@@ -76,8 +89,8 @@ module.exports = {
             pid: pid,
             title: title,
             price: price,
-            location: data.location,
-            category: data.code,
+            // location: data.location,
+            // category: data.code,
             image: image,
             url: postURL
           };

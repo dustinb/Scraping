@@ -4,6 +4,7 @@
   "description": "Pull some web pages and retrieve data from them",
   "main": "index.js",
   "dependencies": {
+    "@grpc/grpc-js": "^1.5.4",
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
     "command-line-args": "^5.1.1",
@@ -11,7 +12,6 @@
     "request": "^2.81.0",
     "sprintf-js": "^1.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

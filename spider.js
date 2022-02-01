@@ -31,15 +31,15 @@ module.exports = {
     data.url = url;
     
     // Use cached version if exists
-    if (fs.existsSync(data.md5 + '.html')) {
-      fs.readFile(data.md5 + '.html', function(err, html) {
-	done(html, data);
+    if (fs.existsSync('cache/' + data.md5 + '.html')) {
+      fs.readFile('cache/' + data.md5 + '.html', function(err, html) {
+	      done(html, data);
       });
       return;
     }
 
-    await sleep(3000);
-
+    await sleep(2000);
+    console.log(url);
     request({url: url, followRedirect: false}, function (error, response, html) {
       if (error) {
         console.log(error);

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package classifieds;
+
+
+message Request {
+    string state = 1;
+    string code = 2;
+    string query = 3;
+}
+
+message Category {
+    string name = 1;
+    string code = 2;
+}
+
+message Post {
+    int64 pid = 1;
+    string title = 2;
+    string price = 3;
+    string image = 4;
+    string url = 5;
+}
+
+message CategoriesReply {
+    repeated Category categories = 1;
+}
+
+message SearchReply {
+    repeated Post posts = 1;
+}
+
+// Our classifieds service
+service Classifieds {
+    rpc Categories (Request) returns (CategoriesReply) {}
+    rpc Search (Request) returns (SearchReply) {}
+  }
